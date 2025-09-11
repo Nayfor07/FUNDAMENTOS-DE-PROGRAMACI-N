@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Pagador</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .form-label {
+            display: block;
+            min-height: 2.2rem; 
+            line-height: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+     <div class="row d-flex justify-content-center mt-3">
+        <div class="col-lg-10 col-md-11 col-sm-12">
+            <div id="app1" class="card">
+                <div class="card-body">
+                    <h5 class="card-title">EL PAGADOR</h5>
+                            <h6 class="my-4 text-center"> Integrantes: Nayfor Martínez - Jeronimo Torrente - José Mestra - Jesús Martínez</h6>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-4 d-flex flex-column">
+                            <label for="inputHoras" class="form-label">Número de Horas Trabajadas</label>
+                            <input v-model="nhoras" type="number" class="form-control" id="inputHoras">
+                        </div>
+                        <div class="col-md-4 d-flex flex-column">
+                            <label for="inputValorHora" class="form-label">Valor de Horas Trabajadas</label>
+                            <input v-model="vhora" type="number" class="form-control" id="inputValorHora">
+                        </div>
+                        <div class="col-md-4 d-flex flex-column">
+                            <label for="inputSalario" class="form-label">Salario Básico</label>
+                            <input :value="salarioBasico" type="number" class="form-control" id="inputSalario" readonly>
+                        </div>
+                    </div>
+
+                    <h6 class="mt-4 text-center">DEDUCCIONES</h6>
+                    <div class="row g-3">
+                        <div class="col-md-4 d-flex flex-column">
+                            <label for="inputSalud" class="form-label">Salud %</label>
+                            <input v-model="salud" type="number" class="form-control" id="inputSalud">
+                        </div>
+                        <div class="col-md-4 d-flex flex-column">
+                            <label for="inputPension" class="form-label">Pensión %</label>
+                            <input v-model="pension" type="number" class="form-control" id="inputPension">
+                        </div>
+                        <div class="col-md-4 d-flex flex-column">
+                            <label for="inputIcbf" class="form-label">ICBF %</label>
+                            <input v-model="icbf" type="number" class="form-control" id="inputIcbf">
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-4 d-flex flex-column">
+                            <label for="inputDeduSalud" class="form-label">$ Salud</label>
+                            <input :value="dedu_salud" type="number" class="form-control" id="inputDeduSalud" readonly>
+                        </div>
+                        <div class="col-md-4 d-flex flex-column">
+                            <label for="inputDeduPension" class="form-label">$ Pensión</label>
+                            <input :value="dedu_pension" type="number" class="form-control" id="inputDeduPension" readonly>
+                        </div>
+                        <div class="col-md-4 d-flex flex-column">
+                            <label for="inputDeduIcbf" class="form-label">$ ICBF</label>
+                            <input :value="dedu_icbf" type="number" class="form-control" id="inputDeduIcbf" readonly>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-12 d-flex flex-column">
+                            <label for="inputTotalDeducciones" class="form-label">Total Deducciones</label>
+                            <input :value="totalDeducciones" type="number" class="form-control" id="inputTotalDeducciones" readonly>
+                        </div>
+                    </div>
+
+                    <h6 class="mt-4 text-center">APORTES Y BONIFICACIONES</h6>
+                    <div class="row g-3">
+                        <div class="col-md-4 d-flex flex-column">
+                            <label for="inputPrimas" class="form-label">Primas %</label>
+                            <input v-model="primas_perc" type="number" class="form-control" id="inputPrimas">
+                        </div>
+                        <div class="col-md-4 d-flex flex-column">
+                            <label for="inputPrestamo" class="form-label">Préstamo %</label>
+                            <input v-model="prestamo_perc" type="number" class="form-control" id="inputPrestamo">
+                        </div>
+                        <div class="col-md-4 d-flex flex-column">
+                            <label for="inputBonificacion" class="form-label">Bonificación %</label>
+                            <input v-model="bonificacion_perc" type="number" class="form-control" id="inputBonificacion">
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-4 d-flex flex-column">
+                            <label for="inputValorPrimas" class="form-label">$ Primas</label>
+                            <input :value="valor_primas" type="number" class="form-control" id="inputValorPrimas" readonly>
+                        </div>
+                        <div class="col-md-4 d-flex flex-column">
+                            <label for="inputValorPrestamo" class="form-label">$ Préstamo</label>
+                            <input :value="valor_prestamo" type="number" class="form-control" id="inputValorPrestamo" readonly>
+                        </div>
+                        <div class="col-md-4 d-flex flex-column">
+                            <label for="inputValorBonificacion" class="form-label">$ Bonificación</label>
+                            <input :value="valor_bonificacion" type="number" class="form-control" id="inputValorBonificacion" readonly>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-12 d-flex flex-column">
+                            <label for="inputTotalAportes" class="form-label">Total Aportes y Bonificaciones</label>
+                            <input :value="totalAportes" type="number" class="form-control" id="inputTotalAportes" readonly>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-12 d-flex flex-column">
+                            <label for="inputTotalAPagar" class="form-label">Total a Pagar</label>
+                            <input :value="totalAPagar" type="number" class="form-control" id="inputTotalAPagar" readonly>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="codigo.js"></script>
+</body>
+</html>
